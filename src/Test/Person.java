@@ -50,11 +50,10 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person " +
+        return   "Person " +
                 "name: " + name +
                 ", age: " + age +
-                ", job: '" + job + '\'' +
-                ", id: '" + id + '\'' +
-                '.';
+                ", job: " + job +
+                ", id: " + id ;
     }
 }
