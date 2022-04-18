@@ -3,7 +3,7 @@ package Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Family {
+public class Family implements Comparable<Family>{
     private List<Person> personList;
     private String address;
     private int member = 0;
@@ -33,26 +33,14 @@ public class Family {
         this.personList = new ArrayList<>();
     }
 
-    public Family(List<Person> personList) {
-        this.personList = personList;
-    }
-
-    public List<Person> getPersonList() {
-        return personList;
-    }
-
-    public void setPersonList(List<Person> personList) {
-        this.personList = personList;
-    }
-
-    public void add(Person person){
+    public void add(Person person) {
         personList.add(person);
         member++;
     }
 
-    public void display()  {
+    public void display() {
         boolean check = false;
-        for (Person e: personList) {
+        for (Person e : personList) {
             System.out.println(e);
             check = true;
         }
@@ -61,16 +49,34 @@ public class Family {
         } else {
             System.out.println("Chua co thanh vien nao");
         }
-        System.out.println("----------");
     }
 
     public int findById(String id) {
         for (int i = 0; i < this.personList.size(); i++) {
-            if (this.personList.get(i).getId().equals(id)){
+            if (this.personList.get(i).getId().equals(id)) {
                 return i;
             }
         }
         return -1;
+    }
+
+    public int findByName(String name) {
+        for (int i = 0; i < this.personList.size(); i++) {
+            if (this.personList.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void findAgeMin() {
+        int minAge = personList.get(0).getAge();
+        for (int i = 0; i < personList.size(); i++) {
+            if (minAge > personList.get(i).getAge()) {
+                minAge = personList.get(i).getAge();
+                System.out.println("Nguoi co tuoi nho nhat: " + personList.get(i).getName() + " " + minAge + " tuoi.");
+            }
+        }
     }
 
     public void delete(String id) {
@@ -83,10 +89,7 @@ public class Family {
     }
 
     @Override
-    public String toString() {
-        return  personList +
-                "\nAddress: " + getAddress() +
-                ", members: " + member +
-                ".";
+    public int compareTo(Family o) {
+        return this.getMember() - o.getMember();
     }
 }

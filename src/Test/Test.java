@@ -24,19 +24,23 @@ public class Test {
         town.addFamily(family1);
         town.displayFamily();
         System.out.println("Xoa ho gia dinh");
-        town.deleteFamily();
+        town.delete(1);
         town.displayFamily();
 
         Family family2 = new Family();
-        family2.add(new Person("1Dat", 19, "Tho xay", "1"));
-        family2.add(new Person("2Dat", 20, "Tho xay 1", "11"));
+        family2.add(new Person("1Dat", 20, "Tho xay", "1"));
+        family2.add(new Person("2Dat", 19, "Tho xay 1", "11"));
         family2.add(new Person("3Dat", 21, "Tho xay 2", "111"));
         family2.add(new Person("4Dat", 22, "Tho xay 3", "1111"));
         family2.add(new Person("5Dat", 23, "Tho xay 4", "11111"));
         family2.setAddress("So 2, Ha noi");
 
-        town.addFamily(family1);
         town.addFamily(family2);
+        town.addFamily(family1);
+        town.displayFamily();
+
+        town.sortByMembers();
+        System.out.println("Sau khi sap xep theo so thanh vien trong ho: ");
         town.displayFamily();
     }
 }

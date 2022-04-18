@@ -1,9 +1,10 @@
 package Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Town {
+public class Town extends Family {
     private List<Family> familyList;
 
     public Town() {
@@ -15,17 +16,28 @@ public class Town {
     }
 
     public void displayFamily() {
-        System.out.println("Family: ");
-        boolean check = false;
-        for (Family e: familyList) {
-            System.out.println(e);
-            check = true;
+        for (Family family: familyList) {
+            System.out.println("--Family:-- ");
+            family.display();
         }
-        System.out.println("---------");
+        System.out.println("-------");
     }
 
-    public void deleteFamily() {
-        familyList.removeAll(familyList);
+    public void delete(int index) {
+        familyList.remove(index - 1);
     }
 
+    public void sortByMembers() {
+        Collections.sort(familyList);
+    }
+
+    public void displayMaxMembers() {
+        int max = familyList.get(0).getMember();
+        for (Family family: familyList) {
+            if (family.getMember() > max) {
+                max = family.getMember();
+                System.out.println(max);
+            }
+        }
+    }
 }
